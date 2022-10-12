@@ -12,3 +12,6 @@ npm init -y
 npm i express cors dotenv multer
 
 npm i @types/express @types/cors @types/dotenv @types/multer -D
+
+npm install --save-dev @types/node @types/validator
+npm install sequelize reflect-metadata sequelize-typescript
