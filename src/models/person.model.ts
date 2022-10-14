@@ -8,7 +8,7 @@ interface PersonAttributes {
   birthDate: Date;
 }
 
-module.exports = (sequelize: any, DataTypes: any) => {
+export const PersonModel = (sequelize: any, DataTypes: any) => {
   class Person extends Model<PersonAttributes> implements PersonAttributes {
     personId!: string;
     name!: string;
