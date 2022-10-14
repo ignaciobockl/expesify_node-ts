@@ -1,24 +1,10 @@
-import dotenv from 'dotenv';
-
-import { app } from './app';
-
-import { sequelizeConnection } from './database/configDatabase';
-
-// Config Environment variables
-dotenv.config();
+import db from './models';
+import express from 'express';
 
 const PORT: number = (process.env.PORT && parseInt(process.env.PORT)) || 8001;
 
-const main = async () => {
+const app = express();
 
-  // Config Database
-  try {
-    await sequelizeConnection.authenticate();
-    console.log('Conexion Postgres OK');
-    app.listen(() => console.log(`Server run on port ${PORT}`));
-  } catch (error) {
-    console.log('Error al intentar realizar la conexion con la DB.', error);
-  }
-};
-
-main();
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Server run on port: ${PORT}`));
+});
